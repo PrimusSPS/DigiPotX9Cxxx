@@ -76,8 +76,9 @@ void DigiPot::change(uint8_t direction, uint8_t amount) {
     digitalWrite(_incPin, HIGH);
     delayMicroseconds(2);
     if (_currentValue != DIGIPOT_UNKNOWN) {
-      _currentValue += (direction == DIGIPOT_UP ? 1 : -1);
-      _currentValue = constrain(_currentValue, 0, DIGIPOT_MAX_AMOUNT);
+      int8_t temp_currentValue = _currentValue;
+      temp_currentValue += (direction == DIGIPOT_UP ? 1 : -1);
+      _currentValue = constrain(temp_currentValue, 0, DIGIPOT_MAX_AMOUNT);
     }
     
   }
